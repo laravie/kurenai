@@ -10,6 +10,8 @@ Kurenai is a Markdown document parser which allows for extra metadata to be asso
 [![Coverage Status](https://img.shields.io/coveralls/orchestral/kurenai/master.svg?style=flat)](https://coveralls.io/r/orchestral/kurenai?branch=master)
 [![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/kurenai/master.svg?style=flat)](https://scrutinizer-ci.com/g/orchestral/kurenai/)
 
+## Introduction
+
 Confused? Let's take a look at how it works.
 
 This is what your documents might look like:
@@ -26,13 +28,15 @@ and here is how you will parse it with Kurenai :
 <?php
 
 // Use the Kurenai document parser.
+use Kurenai\Document;
 use Kurenai\DocumentParser;
+use Kurenai\Parser\Parsedown;
 
 // Load our document source.
 $source = file_get_contents('my_document.md');
 
 // Create a new document parser
-$parser = new DocumentParser;
+$parser = new DocumentParser(new Document(new Parsedown));
 
 // Parse the loaded source.
 $document = $parser->parse($source);
@@ -58,10 +62,6 @@ $metadata = $document->get();
 $slug = $document->get('slug');
 ```
 
-Kurenai was intended for use with flat file publishing solutions.
+## Origin
 
-Kurenai is availabe on packagist as [daylerees/kurenai](https://packagist.org/packages/daylerees/kurenai).
-
-The package is copyright (c) 2013 Dayle Rees and released under the MIT License [<http://opensource.org/licenses/MIT>](http://opensource.org/licenses/MIT).
-
-Enjoy!
+Kurenai is a forked project from [daylerees/kurenai](https://github.com/daylerees/kurenai).
