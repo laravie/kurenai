@@ -28,7 +28,8 @@
 		"erusev/parsedown-extra": "~0.5"
 	},
 	"suggest": {
-		"erusev/parsedown": "Parsing markdown using erusev/parsedown"
+		"erusev/parsedown": "Parsing markdown using erusev/parsedown (~1.5).",
+		"erusev/parsedown-extra": "Parsing markdown using erusev/parsedown-extra (~0.5)."
 	},
 	"extra": {
 		"branch-alias": {
