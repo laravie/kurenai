@@ -1,5 +1,4 @@
-<?php
-namespace Kurenai;
+<?php namespace Kurenai;
 
 interface MarkdownParserInterface
 {

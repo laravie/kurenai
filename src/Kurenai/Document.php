@@ -1,5 +1,4 @@
-<?php
-namespace Kurenai;
+<?php namespace Kurenai;
 
 class Document
 {
@@ -29,25 +28,22 @@ class Document
      *
      * @param MarkdownParserInterface $markdownParser
      */
-    public function __construct(MarkdownParserInterface $markdownParser = null)
+    public function __construct(MarkdownParserInterface $markdownParser)
     {
-        if ($markdownParser === null) {
-            $this->markdownParser = new Parser\ParsedownMarkdown();
-        } else {
-            $this->markdownParser = $markdownParser;
-        }
+        $this->markdownParser = $markdownParser;
     }
 
     /**
      * Set the document content in Markdown format.
      *
-     * @param  string
+     * @param  string  $content
      *
-     * @return Document
+     * @return $this
      */
     public function setContent($content)
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -74,34 +70,36 @@ class Document
     /**
      * Set the document metadata using an array.
      *
-     * @param  array $metadata
+     * @param  array  $metadata
      *
-     * @return Document
+     * @return $this
      */
     public function set(array $metadata)
     {
         $this->metadata = $metadata;
+
         return $this;
     }
 
     /**
      * Add a piece of metadata to the document.
      *
-     * @param  string $key
-     * @param  mixed  $value
+     * @param  string  $key
+     * @param  mixed   $value
      *
-     * @return Document
+     * @return $this
      */
     public function add($key, $value)
     {
         $this->metadata[$key] = $value;
+
         return $this;
     }
 
     /**
      * Get metadata from the document.
      *
-     * @param  string $key
+     * @param  string  $key
      *
      * @return mixed
      */
@@ -110,9 +108,11 @@ class Document
         if (is_null($key)) {
             return $this->metadata;
         }
+
         if (! array_key_exists($key, $this->metadata)) {
             return;
         }
+
         return $this->metadata[$key];
     }
 }

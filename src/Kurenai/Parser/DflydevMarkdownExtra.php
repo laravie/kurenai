@@ -1,5 +1,4 @@
-<?php
-namespace Kurenai\Parser;
+<?php namespace Kurenai\Parser;
 
 use Kurenai\MarkdownParserInterface;
 use dflydev\markdown\MarkdownExtraParser;

@@ -1,5 +1,4 @@
-<?php
-namespace Kurenai;
+<?php namespace Kurenai;
 
 use Kurenai\Exceptions\TooFewSectionsException;
 
@@ -23,22 +22,18 @@ class DocumentParser
     /**
      * Document object resolver.
      *
-     * @var callable
+     * @var Document
      */
     protected $documentResolver;
 
     /**
      * Instantiate an instance optionally passing in a Documemt object resolver.
      *
-     * @param callable $documentResolver
+     * @param Document $documentResolver
      */
-    public function __construct($documentResolver = null)
+    public function __construct($documentResolver)
     {
-        if ($documentResolver === null) {
-            $this->documentResolver = function () { return new Document(); };
-        } else {
-            $this->documentResolver = $documentResolver;
-        }
+        $this->documentResolver = $documentResolver;
     }
 
     /**
@@ -52,6 +47,7 @@ class DocumentParser
     {
         $content  = $this->parseContent($source);
         $metadata = $this->parseMetadata($this->parseHeader($source));
+
         return $this->buildDocument($content, $metadata);
     }
 
@@ -65,9 +61,10 @@ class DocumentParser
      */
     public function buildDocument($content, array $metadata)
     {
-        $document = call_user_func($this->documentResolver);
+        $document = $this->documentResolver;
         $document->setContent($content);
         $document->set($metadata);
+
         return $document;
     }
 
@@ -108,9 +105,11 @@ class DocumentParser
     public function parseSection($source, $offset)
     {
         $sections = preg_split(self::SECTION_SPLITTER, $source, 2);
+
         if (count($sections) != 2) {
             throw new TooFewSectionsException();
         }
+
         return trim($sections[$offset]);
     }
 
@@ -125,15 +124,20 @@ class DocumentParser
     {
         $metadata = [];
         $lines    = preg_split(self::META_LINE_SPLITTER, $source);
+
         foreach ($lines as $line) {
             $parts = preg_split(self::META_SPLITTER, $line, 2);
+
             if (count($parts) !== 2) {
                 continue;
             }
-            $key            = strtolower(trim($parts[0]));
-            $value          = trim($parts[1]);
+
+            $key = strtolower(trim($parts[0]));
+            $value = trim($parts[1]);
+
             $metadata[$key] = $value;
         }
+
         return $metadata;
     }
 }
