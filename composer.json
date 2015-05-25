@@ -1,7 +1,7 @@
 {
-	"name": "daylerees/kurenai",
+	"name": "orchestra/kurenai",
 	"description": "Markdown document parser with metadata.",
-	"keywords": ["kurenai", "markdown", "metadata", "document", "daylerees"],
+	"keywords": ["kurenai", "markdown", "metadata", "document"],
 	"license": "MIT",
 	"authors": [
 		{
