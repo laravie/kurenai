@@ -1,5 +1,4 @@
 <?php
-
 namespace Kurenai\Parser;
 
 use Kurenai\MarkdownParserInterface;

@@ -1,5 +1,4 @@
 <?php
-
 namespace Kurenai;
 
 class Document
@@ -16,10 +15,10 @@ class Document
      *
      * @var array
      */
-    protected $metadata = array();
+    protected $metadata = [];
 
     /**
-     * A Kurenai\MarkdownParserInterface implementation
+     * A Kurenai\MarkdownParserInterface implementation.
      *
      * @var MarkdownParserInterface
      */
@@ -33,7 +32,7 @@ class Document
     public function __construct(MarkdownParserInterface $markdownParser = null)
     {
         if ($markdownParser === null) {
-            $this->markdownParser = new Parser\ParsedownMarkdown;
+            $this->markdownParser = new Parser\ParsedownMarkdown();
         } else {
             $this->markdownParser = $markdownParser;
         }
@@ -43,6 +42,7 @@ class Document
      * Set the document content in Markdown format.
      *
      * @param  string
+     *
      * @return Document
      */
     public function setContent($content)
@@ -75,6 +75,7 @@ class Document
      * Set the document metadata using an array.
      *
      * @param  array $metadata
+     *
      * @return Document
      */
     public function set(array $metadata)
@@ -88,6 +89,7 @@ class Document
      *
      * @param  string $key
      * @param  mixed  $value
+     *
      * @return Document
      */
     public function add($key, $value)
@@ -100,12 +102,17 @@ class Document
      * Get metadata from the document.
      *
      * @param  string $key
+     *
      * @return mixed
      */
     public function get($key = null)
     {
-        if (is_null($key)) return $this->metadata;
-        if (! array_key_exists($key, $this->metadata)) return null;
+        if (is_null($key)) {
+            return $this->metadata;
+        }
+        if (! array_key_exists($key, $this->metadata)) {
+            return;
+        }
         return $this->metadata[$key];
     }
 }

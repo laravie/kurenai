@@ -1,5 +1,4 @@
 <?php
-
 namespace Kurenai;
 
 use Kurenai\Exceptions\TooFewSectionsException;
@@ -22,9 +21,9 @@ class DocumentParser
     const META_SPLITTER = '/:/';
 
     /**
-     * Document object resolver
+     * Document object resolver.
      *
-     * @var callable $callback
+     * @var callable
      */
     protected $documentResolver;
 
@@ -36,7 +35,7 @@ class DocumentParser
     public function __construct($documentResolver = null)
     {
         if ($documentResolver === null) {
-            $this->documentResolver = function() { return new Document; };
+            $this->documentResolver = function () { return new Document(); };
         } else {
             $this->documentResolver = $documentResolver;
         }
@@ -46,11 +45,12 @@ class DocumentParser
      * Parse a markdown document with metadata.
      *
      * @param  string $source
+     *
      * @return Document
      */
     public function parse($source)
     {
-        $content = $this->parseContent($source);
+        $content  = $this->parseContent($source);
         $metadata = $this->parseMetadata($this->parseHeader($source));
         return $this->buildDocument($content, $metadata);
     }
@@ -60,6 +60,7 @@ class DocumentParser
      *
      * @param  string $content
      * @param  array  $metadata
+     *
      * @return Document
      */
     public function buildDocument($content, array $metadata)
@@ -74,6 +75,7 @@ class DocumentParser
      * Parse the header section of the document.
      *
      * @param  string $source
+     *
      * @return string
      */
     public function parseHeader($source)
@@ -85,6 +87,7 @@ class DocumentParser
      * Parse the content section of the document.
      *
      * @param  string $source
+     *
      * @return string
      */
     public function parseContent($source)
@@ -97,13 +100,17 @@ class DocumentParser
      *
      * @param  string $source
      * @param  int $offset
+     *
      * @throws TooFewSectionsException
+     *
      * @return string
      */
     public function parseSection($source, $offset)
     {
         $sections = preg_split(self::SECTION_SPLITTER, $source, 2);
-        if (count($sections) != 2) throw new TooFewSectionsException();
+        if (count($sections) != 2) {
+            throw new TooFewSectionsException();
+        }
         return trim($sections[$offset]);
     }
 
@@ -111,17 +118,20 @@ class DocumentParser
      * Parse metadata into an array.
      *
      * @param  string $source
+     *
      * @return array
      */
     public function parseMetadata($source)
     {
-        $metadata = array();
-        $lines = preg_split(self::META_LINE_SPLITTER, $source);
+        $metadata = [];
+        $lines    = preg_split(self::META_LINE_SPLITTER, $source);
         foreach ($lines as $line) {
             $parts = preg_split(self::META_SPLITTER, $line, 2);
-            if (count($parts) !== 2) continue;
-            $key = strtolower(trim($parts[0]));
-            $value = trim($parts[1]);
+            if (count($parts) !== 2) {
+                continue;
+            }
+            $key            = strtolower(trim($parts[0]));
+            $value          = trim($parts[1]);
             $metadata[$key] = $value;
         }
         return $metadata;

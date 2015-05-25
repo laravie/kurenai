@@ -1,5 +1,6 @@
 <?php
-
 namespace Kurenai\Exceptions;
 
-class TooFewSectionsException extends \Exception {}
+class TooFewSectionsException extends \Exception
+{
+}
