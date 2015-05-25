@@ -1,6 +1,7 @@
 <?php namespace Kurenai;
 
 use Kurenai\Exceptions\TooFewSectionsException;
+use Kurenai\Contracts\Document as DocumentContract;
 
 class DocumentParser
 {
@@ -22,16 +23,16 @@ class DocumentParser
     /**
      * Document object resolver.
      *
-     * @var Document
+     * @var \Kurenai\Contracts\Document
      */
     protected $documentResolver;
 
     /**
      * Instantiate an instance optionally passing in a Documemt object resolver.
      *
-     * @param Document $documentResolver
+     * @param  \Kurenai\Contracts\Document  $documentResolver
      */
-    public function __construct($documentResolver)
+    public function __construct(DocumentContract $documentResolver)
     {
         $this->documentResolver = $documentResolver;
     }
@@ -39,9 +40,9 @@ class DocumentParser
     /**
      * Parse a markdown document with metadata.
      *
-     * @param  string $source
+     * @param  string  $source
      *
-     * @return Document
+     * @return \Kurenai\Contracts\Document
      */
     public function parse($source)
     {
@@ -54,10 +55,10 @@ class DocumentParser
     /**
      * Build a Document from the parsed data.
      *
-     * @param  string $content
-     * @param  array  $metadata
+     * @param  string  $content
+     * @param  array   $metadata
      *
-     * @return Document
+     * @return \Kurenai\Contracts\Document
      */
     public function buildDocument($content, array $metadata)
     {
@@ -95,10 +96,10 @@ class DocumentParser
     /**
      * Parse a dection of the document.
      *
-     * @param  string $source
-     * @param  int $offset
+     * @param  string  $source
+     * @param  int  $offset
      *
-     * @throws TooFewSectionsException
+     * @throws \Kurenai\Exceptions\TooFewSectionsException
      *
      * @return string
      */
@@ -116,7 +117,7 @@ class DocumentParser
     /**
      * Parse metadata into an array.
      *
-     * @param  string $source
+     * @param  string  $source
      *
      * @return array
      */

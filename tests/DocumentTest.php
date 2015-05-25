@@ -1,25 +1,32 @@
-<?php
+<?php namespace Kurenai\TestCase;
 
+use Mockery as m;
 use Kurenai\Document;
+use Kurenai\Contracts\MarkdownParser;
 
-class DocumentTest extends PHPUnit_Framework_TestCase
+class DocumentTest extends \PHPUnit_Framework_TestCase
 {
+    public function tearDown()
+    {
+        m::close();
+    }
+
     public function testDocumentCanBeCreated()
     {
-        $d = new Document();
+        $d = new Document(m::mock('\Kurenai\Contracts\MarkdownParser'));
         $this->assertTrue($d instanceof Document);
     }
 
     public function testDocumentContentCanBeSet()
     {
-        $d = new Document();
+        $d = new Document(m::mock('\Kurenai\Contracts\MarkdownParser'));
         $d->setContent('Foo');
         $this->assertEquals('Foo', $d->getContent());
     }
 
     public function testDocumentMetadataCanBeSet()
     {
-        $d = new Document();
+        $d = new Document(m::mock('\Kurenai\Contracts\MarkdownParser'));
         $d->set(array('Foo' => 'Bar'));
         $this->assertCount(1, $d->get());
         $this->assertEquals('Bar', $d->get('Foo'));
@@ -28,7 +35,7 @@ class DocumentTest extends PHPUnit_Framework_TestCase
 
     public function testDocumentMetadataCanBeAdded()
     {
-        $d = new Document();
+        $d = new Document(m::mock('\Kurenai\Contracts\MarkdownParser'));
         $d->add('Foo', 'Bar');
         $this->assertCount(1, $d->get());
         $this->assertEquals('Bar', $d->get('Foo'));
@@ -42,7 +49,7 @@ class DocumentTest extends PHPUnit_Framework_TestCase
 
     public function testDocumentCanUseCustomParser()
     {
-        $document = new Document(new ParserStub());
+        $document = new Document(new MarkdownParserStub());
         $this->assertEquals('Rendered content.', $document->getHtmlContent());
     }
 }
@@ -50,7 +57,7 @@ class DocumentTest extends PHPUnit_Framework_TestCase
 /**
  * This class should be a stub implementation for the MarkdownParserInterface.
  */
-class ParserStub implements \Kurenai\MarkdownParserInterface
+class MarkdownParserStub implements MarkdownParser
 {
     public function render($content)
     {

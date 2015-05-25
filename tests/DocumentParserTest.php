@@ -1,13 +1,14 @@
-<?php
+<?php namespace Kurenai\TestCase;
 
 use Kurenai\Document;
 use Kurenai\DocumentParser;
+use Kurenai\Parser\Parsedown;
 
-class DocumentParserTest extends PHPUnit_Framework_TestCase
+class DocumentParserTest extends \PHPUnit_Framework_TestCase
 {
     public function testParseSectionCanParseOffset()
     {
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $f = "first\n-----\nsecond";
         $this->assertEquals('first', $d->parseSection($f, 0));
         $this->assertEquals('second', $d->parseSection($f, 1));
@@ -15,7 +16,7 @@ class DocumentParserTest extends PHPUnit_Framework_TestCase
 
     public function testParseSectionCanHandleExtraNewLines()
     {
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $f = "first\n\n\n-----\n\n\nsecond";
         $this->assertEquals('first', $d->parseSection($f, 0));
         $this->assertEquals('second', $d->parseSection($f, 1));
@@ -23,7 +24,7 @@ class DocumentParserTest extends PHPUnit_Framework_TestCase
 
     public function testParseSectionCanHandleMultipleSeparators()
     {
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $f = "first\n\n\n-----\n--\n\n\nsecond";
         $this->assertEquals('first', $d->parseSection($f, 0));
         $this->assertEquals("--\n\n\nsecond", $d->parseSection($f, 1));
@@ -32,7 +33,7 @@ class DocumentParserTest extends PHPUnit_Framework_TestCase
     public function testParseSectionBreaksWithoutNewLines()
     {
         $this->setExpectedException('Kurenai\Exceptions\TooFewSectionsException');
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $f = "first-----second";
         $d->parseSection($f, 0);
     }
@@ -40,14 +41,14 @@ class DocumentParserTest extends PHPUnit_Framework_TestCase
     public function testParseSectionBreaksWhenSeparatorHasLessThanThreeDashes()
     {
         $this->setExpectedException('Kurenai\Exceptions\TooFewSectionsException');
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $f = "first\n--\nsecond";
         $d->parseSection($f, 0);
     }
 
     public function testParseSectionWorksWithLotsOfDashes()
     {
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $f = "first\n------------------------------\nsecond";
         $d->parseSection($f, 0);
         $this->assertEquals('first', $d->parseSection($f, 0));
@@ -56,7 +57,7 @@ class DocumentParserTest extends PHPUnit_Framework_TestCase
 
     public function testDocumentHeaderSectionCanBeParsed()
     {
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $f = file_get_contents(__DIR__.'/fixtures/document_01.md');
         $s = $d->parseHeader($f);
         $this->assertEquals('metadata section', $s);
@@ -64,7 +65,7 @@ class DocumentParserTest extends PHPUnit_Framework_TestCase
 
     public function testDocumentContentSectionCanBeParsed()
     {
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $f = file_get_contents(__DIR__.'/fixtures/document_01.md');
         $s = $d->parseContent($f);
         $this->assertEquals('content section', $s);
@@ -72,7 +73,7 @@ class DocumentParserTest extends PHPUnit_Framework_TestCase
 
     public function testMetadataCanBeParsed()
     {
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $f = file_get_contents(__DIR__.'/fixtures/document_02.md');
         $s = $d->parseMetadata($f);
         $this->assertCount(2, $s);
@@ -81,7 +82,7 @@ class DocumentParserTest extends PHPUnit_Framework_TestCase
 
     public function testMetadataCanBeParsedWithExtraColons()
     {
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $f = "foo:bar\nbaz:bar:bar";
         $s = $d->parseMetadata($f);
         $this->assertCount(2, $s);
@@ -90,9 +91,9 @@ class DocumentParserTest extends PHPUnit_Framework_TestCase
 
     public function testMetadataCantBeParsedFromContent()
     {
-        $parser = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $file = file_get_contents(__DIR__.'/fixtures/document_04.md');
-        $document = $parser->parse($file);
+        $document = $d->parse($file);
         $meta = $document->get();
         $this->assertCount(2, $meta);
         $this->assertSame(array('foo' => 'bar', 'baz' => 'boo'), $meta);
@@ -100,7 +101,7 @@ class DocumentParserTest extends PHPUnit_Framework_TestCase
 
     public function testBuildDocumentCreatesDocumentCorrectly()
     {
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $c = 'foo bar';
         $m = array('foo' => 'bar');
         $a = $d->buildDocument($c, $m);
@@ -111,7 +112,7 @@ class DocumentParserTest extends PHPUnit_Framework_TestCase
 
     public function testParseDocumentFromMarkdownWithMetadata()
     {
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $f = file_get_contents(__DIR__.'/fixtures/document_03.md');
         $a = $d->parse($f);
         $this->assertTrue($a instanceof Document);
@@ -119,7 +120,7 @@ class DocumentParserTest extends PHPUnit_Framework_TestCase
 
     public function testParseDocumentWithCorrectContent()
     {
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $f = file_get_contents(__DIR__.'/fixtures/document_03.md');
         $a = $d->parse($f);
         $this->assertEquals('foo bar baz', $a->getContent());
@@ -127,7 +128,7 @@ class DocumentParserTest extends PHPUnit_Framework_TestCase
 
     public function testParseDocumentWithCorrectMetadata()
     {
-        $d = new DocumentParser();
+        $d = new DocumentParser(new Document(new Parsedown()));
         $f = file_get_contents(__DIR__.'/fixtures/document_03.md');
         $a = $d->parse($f);
         $this->assertCount(2, $a->get());

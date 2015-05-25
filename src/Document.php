@@ -1,6 +1,9 @@
 <?php namespace Kurenai;
 
-class Document
+use Kurenai\Contracts\MarkdownParser;
+use Kurenai\Contracts\Document as DocumentContract;
+
+class Document implements DocumentContract
 {
     /**
      * The document body in Markdown format.
@@ -19,16 +22,16 @@ class Document
     /**
      * A Kurenai\MarkdownParserInterface implementation.
      *
-     * @var MarkdownParserInterface
+     * @var \Kurenai\Contracts\MarkdownParser
      */
     protected $markdownParser;
 
     /**
      * Instantiate an instance optionally injecting a markdown parser implementation.
      *
-     * @param MarkdownParserInterface $markdownParser
+     * @param  \Kurenai\Contracts\MarkdownParser  $markdownParser
      */
-    public function __construct(MarkdownParserInterface $markdownParser)
+    public function __construct(MarkdownParser $markdownParser)
     {
         $this->markdownParser = $markdownParser;
     }
