@@ -1,8 +1,14 @@
-[![Build Status](https://travis-ci.org/daylerees/kurenai.png)](https://travis-ci.org/daylerees/kurenai.png)
-
-# Kurenai
+Kurenai
+==============
 
 Kurenai is a Markdown document parser which allows for extra metadata to be associated with the document.
+
+[![Latest Stable Version](https://img.shields.io/github/release/orchestral/kurenai.svg?style=flat)](https://packagist.org/packages/orchestra/kurenai)
+[![Total Downloads](https://img.shields.io/packagist/dt/orchestra/kurenai.svg?style=flat)](https://packagist.org/packages/orchestra/kurenai)
+[![MIT License](https://img.shields.io/packagist/l/orchestra/kurenai.svg?style=flat)](https://packagist.org/packages/orchestra/kurenai)
+[![Build Status](https://img.shields.io/travis/orchestral/kurenai/master.svg?style=flat)](https://travis-ci.org/orchestral/kurenai)
+[![Coverage Status](https://img.shields.io/coveralls/orchestral/kurenai/master.svg?style=flat)](https://coveralls.io/r/orchestral/kurenai?branch=master)
+[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/kurenai/master.svg?style=flat)](https://scrutinizer-ci.com/g/orchestral/kurenai/)
 
 Confused? Let's take a look at how it works.
 
