@@ -27,6 +27,9 @@
 		"mockery/mockery": "0.9.*",
 		"erusev/parsedown-extra": "~0.5"
 	},
+	"conflict": {
+		"daylerees/kurenai": "~1.0"
+	},
 	"suggest": {
 		"erusev/parsedown": "Parsing markdown using erusev/parsedown (~1.5).",
 		"erusev/parsedown-extra": "Parsing markdown using erusev/parsedown-extra (~0.5)."
