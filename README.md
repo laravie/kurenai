@@ -1,6 +1,8 @@
 Kurenai
 ==============
 
+[![Join the chat at https://gitter.im/orchestral/platform/components](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/orchestral/platform/components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Kurenai is a Markdown document parser which allows for extra metadata to be associated with the document.
 
 [![Latest Stable Version](https://img.shields.io/github/release/orchestral/kurenai.svg?style=flat-square)](https://packagist.org/packages/orchestra/kurenai)
