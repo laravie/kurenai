@@ -1,16 +1,16 @@
 Kurenai
 ==============
 
-[![Join the chat at https://gitter.im/orchestral/platform/components](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/orchestral/platform/components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/laravie/laravie](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/laravie/laravie?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Kurenai is a Markdown document parser which allows for extra metadata to be associated with the document.
 
-[![Latest Stable Version](https://img.shields.io/github/release/orchestral/kurenai.svg?style=flat-square)](https://packagist.org/packages/orchestra/kurenai)
-[![Total Downloads](https://img.shields.io/packagist/dt/orchestra/kurenai.svg?style=flat-square)](https://packagist.org/packages/orchestra/kurenai)
-[![MIT License](https://img.shields.io/packagist/l/orchestra/kurenai.svg?style=flat-square)](https://packagist.org/packages/orchestra/kurenai)
-[![Build Status](https://img.shields.io/travis/orchestral/kurenai/master.svg?style=flat-square)](https://travis-ci.org/orchestral/kurenai)
-[![Coverage Status](https://img.shields.io/coveralls/orchestral/kurenai/master.svg?style=flat-square)](https://coveralls.io/r/orchestral/kurenai?branch=master)
-[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/kurenai/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/orchestral/kurenai/)
+[![Latest Stable Version](https://img.shields.io/github/release/laravie/kurenai.svg?style=flat-square)](https://packagist.org/packages/laravie/kurenai)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravie/kurenai.svg?style=flat-square)](https://packagist.org/packages/laravie/kurenai)
+[![MIT License](https://img.shields.io/packagist/l/laravie/kurenai.svg?style=flat-square)](https://packagist.org/packages/laravie/kurenai)
+[![Build Status](https://img.shields.io/travis/laravie/kurenai/master.svg?style=flat-square)](https://travis-ci.org/laravie/kurenai)
+[![Coverage Status](https://img.shields.io/coveralls/laravie/kurenai/master.svg?style=flat-square)](https://coveralls.io/r/laravie/kurenai?branch=master)
+[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/laravie/kurenai/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravie/kurenai/)
 
 ## Introduction
 
