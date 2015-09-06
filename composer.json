@@ -1,5 +1,5 @@
 {
-    "name": "orchestra/kurenai",
+    "name": "laravie/kurenai",
     "description": "Markdown document parser with metadata.",
     "keywords": ["kurenai", "markdown", "metadata", "document"],
     "license": "MIT",
