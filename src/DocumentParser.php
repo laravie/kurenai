@@ -133,7 +133,7 @@ class DocumentParser
                 continue;
             }
 
-            $key = strtolower(trim($parts[0]));
+            $key   = strtolower(trim($parts[0]));
             $value = trim($parts[1]);
 
             $metadata[$key] = $value;
