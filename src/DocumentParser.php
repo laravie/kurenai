@@ -1,5 +1,6 @@
 <?php namespace Kurenai;
 
+use Symfony\Component\Yaml\Yaml;
 use Kurenai\Exceptions\TooFewSectionsException;
 use Kurenai\Contracts\Document as DocumentContract;
 
@@ -9,16 +10,6 @@ class DocumentParser
      * Pattern to split the fields from the article body.
      */
     const SECTION_SPLITTER = '/\s+-{3,}\s+/';
-
-    /**
-     * Pattern to split lines within the header section.
-     */
-    const META_LINE_SPLITTER = '/\n/';
-
-    /**
-     * Pattern to split metadata within the header section.
-     */
-    const META_SPLITTER = '/:/';
 
     /**
      * Document object resolver.
@@ -123,22 +114,6 @@ class DocumentParser
      */
     public function parseMetadata($source)
     {
-        $metadata = [];
-        $lines    = preg_split(self::META_LINE_SPLITTER, $source);
-
-        foreach ($lines as $line) {
-            $parts = preg_split(self::META_SPLITTER, $line, 2);
-
-            if (count($parts) !== 2) {
-                continue;
-            }
-
-            $key   = strtolower(trim($parts[0]));
-            $value = trim($parts[1]);
-
-            $metadata[$key] = $value;
-        }
-
-        return $metadata;
+        return Yaml::parse($source);
     }
 }
