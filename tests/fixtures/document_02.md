@@ -1,6 +1,4 @@
 Foo: Bar
-Baz:Boo
-
-ignorethis
+Baz: Boo
 
 

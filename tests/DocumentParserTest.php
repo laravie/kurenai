@@ -77,16 +77,17 @@ class DocumentParserTest extends \PHPUnit_Framework_TestCase
         $f = file_get_contents(__DIR__.'/fixtures/document_02.md');
         $s = $d->parseMetadata($f);
         $this->assertCount(2, $s);
-        $this->assertEquals(array('foo' => 'Bar', 'baz' => 'Boo'), $s);
+        $this->assertEquals(array('Foo' => 'Bar', 'Baz' => 'Boo'), $s);
     }
 
+    /**
+     * @expectedException \Symfony\Component\Yaml\Exception\ParseException
+     */
     public function testMetadataCanBeParsedWithExtraColons()
     {
         $d = new DocumentParser(new Document(new Parsedown()));
         $f = "foo:bar\nbaz:bar:bar";
         $s = $d->parseMetadata($f);
-        $this->assertCount(2, $s);
-        $this->assertEquals(array('foo' => 'bar', 'baz' => 'bar:bar'), $s);
     }
 
     public function testMetadataCantBeParsedFromContent()
