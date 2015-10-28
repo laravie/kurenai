@@ -40,5 +40,4 @@ matrix:
   allow_failures:
     - env: setup=lowest
     - env: setup=stable
-    - php: 7.0
   fast_finish: true
