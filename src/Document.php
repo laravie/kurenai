@@ -1,4 +1,6 @@
-<?php namespace Kurenai;
+<?php
+
+namespace Kurenai;
 
 use Kurenai\Contracts\MarkdownParser;
 use Kurenai\Contracts\Document as DocumentContract;

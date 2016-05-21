@@ -1,4 +1,6 @@
-<?php namespace Kurenai\Parser\TestCase;
+<?php
+
+namespace Kurenai\Parser\TestCase;
 
 use Kurenai\Document;
 use Kurenai\Parser\Parsedown;

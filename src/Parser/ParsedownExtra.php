@@ -1,4 +1,6 @@
-<?php namespace Kurenai\Parser;
+<?php
+
+namespace Kurenai\Parser;
 
 use ParsedownExtra as Parser;
 use Kurenai\Contracts\MarkdownParser as ParserContract;

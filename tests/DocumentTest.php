@@ -1,4 +1,6 @@
-<?php namespace Kurenai\TestCase;
+<?php
+
+namespace Kurenai\TestCase;
 
 use Mockery as m;
 use Kurenai\Document;

@@ -1,4 +1,6 @@
-<?php namespace Kurenai;
+<?php
+
+namespace Kurenai;
 
 use Symfony\Component\Yaml\Yaml;
 use Kurenai\Exceptions\TooFewSectionsException;

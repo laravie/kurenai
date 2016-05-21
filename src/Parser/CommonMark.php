@@ -1,4 +1,6 @@
-<?php namespace Kurenai\Parser;
+<?php
+
+namespace Kurenai\Parser;
 
 use League\CommonMark\CommonMarkConverter;
 use Kurenai\Contracts\MarkdownParser as ParserContract;

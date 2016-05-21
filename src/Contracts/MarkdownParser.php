@@ -1,4 +1,6 @@
-<?php namespace Kurenai\Contracts;
+<?php
+
+namespace Kurenai\Contracts;
 
 interface MarkdownParser
 {
