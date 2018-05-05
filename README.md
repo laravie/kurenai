@@ -1,16 +1,14 @@
 Kurenai
 ==============
 
-[![Join the chat at https://gitter.im/laravie/laravie](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/laravie/laravie?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 Kurenai is a Markdown document parser which allows for extra metadata to be associated with the document.
 
-[![Latest Stable Version](https://img.shields.io/github/release/laravie/kurenai.svg?style=flat-square)](https://packagist.org/packages/laravie/kurenai)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravie/kurenai.svg?style=flat-square)](https://packagist.org/packages/laravie/kurenai)
-[![MIT License](https://img.shields.io/packagist/l/laravie/kurenai.svg?style=flat-square)](https://packagist.org/packages/laravie/kurenai)
-[![Build Status](https://img.shields.io/travis/laravie/kurenai/master.svg?style=flat-square)](https://travis-ci.org/laravie/kurenai)
-[![Coverage Status](https://img.shields.io/coveralls/laravie/kurenai/master.svg?style=flat-square)](https://coveralls.io/r/laravie/kurenai?branch=master)
-[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/laravie/kurenai/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/laravie/kurenai/)
+[![Build Status](https://travis-ci.org/laravie/kurenai.svg?branch=master)](https://travis-ci.org/laravie/kurenai)
+[![Latest Stable Version](https://poser.pugx.org/laravie/kurenai/v/stable)](https://packagist.org/packages/laravie/kurenai)
+[![Total Downloads](https://poser.pugx.org/laravie/kurenai/downloads)](https://packagist.org/packages/laravie/kurenai)
+[![Latest Unstable Version](https://poser.pugx.org/laravie/kurenai/v/unstable)](https://packagist.org/packages/laravie/kurenai)
+[![License](https://poser.pugx.org/laravie/kurenai/license)](https://packagist.org/packages/laravie/kurenai)
+[![Coverage Status](https://coveralls.io/repos/github/laravie/kurenai/badge.svg?branch=master)](https://coveralls.io/github/laravie/kurenai?branch=master)
 
 ## Introduction
 
