@@ -3,16 +3,16 @@ language: php
 sudo: false
 
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
-  - hhvm
+  - 7.1
+  - 7.2
 
 env:
   global:
-    - setup=basic
     - coverage=no
+  matrix:
+    - setup=basic
+    - setup=lowest
+    - setup=stable
 
 before_script:
   - travis_retry composer self-update
@@ -31,13 +31,8 @@ after_script:
 
 matrix:
   include:
-    - php: 5.4
-      env: setup=lowest
-    - php: 5.4
-      env: setup=stable
-    - php: 5.4
+    - php: 7.1
       env: setup=coveralls coverage=yes
   allow_failures:
-    - env: setup=lowest
-    - env: setup=stable
+    - env: setup=coveralls coverage=yes
   fast_finish: true
