@@ -2,9 +2,10 @@
 
 namespace Kurenai;
 
+use Kurenai\Contracts\Document;
 use Symfony\Component\Yaml\Yaml;
 use Kurenai\Exceptions\TooFewSectionsException;
-use Kurenai\Contracts\Document as DocumentContract;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 class DocumentParser
 {
@@ -25,7 +26,7 @@ class DocumentParser
      *
      * @param  \Kurenai\Contracts\Document  $documentResolver
      */
-    public function __construct(DocumentContract $documentResolver)
+    public function __construct(Contracts\Document $documentResolver)
     {
         $this->documentResolver = $documentResolver;
     }
@@ -37,7 +38,7 @@ class DocumentParser
      *
      * @return \Kurenai\Contracts\Document
      */
-    public function parse($source)
+    public function parse(string $source): Contracts\Document
     {
         $content  = $this->parseContent($source);
         $metadata = $this->parseMetadata($this->parseHeader($source));
@@ -53,7 +54,7 @@ class DocumentParser
      *
      * @return \Kurenai\Contracts\Document
      */
-    public function buildDocument($content, array $metadata)
+    public function buildDocument(string $content, array $metadata): Contracts\Document
     {
         $document = $this->documentResolver;
         $document->setContent($content);
@@ -69,7 +70,7 @@ class DocumentParser
      *
      * @return string
      */
-    public function parseHeader($source)
+    public function parseHeader(string $source): string
     {
         return $this->parseSection($source, 0);
     }
@@ -81,7 +82,7 @@ class DocumentParser
      *
      * @return string
      */
-    public function parseContent($source)
+    public function parseContent(string $source): string
     {
         return $this->parseSection($source, 1);
     }
@@ -96,7 +97,7 @@ class DocumentParser
      *
      * @return string
      */
-    public function parseSection($source, $offset)
+    public function parseSection(string $source, int $offset): string
     {
         $sections = preg_split(self::SECTION_SPLITTER, $source, 2);
 
@@ -114,8 +115,14 @@ class DocumentParser
      *
      * @return array
      */
-    public function parseMetadata($source)
+    public function parseMetadata(string $source): array
     {
-        return Yaml::parse($source);
+        $yaml = Yaml::parse($source);
+
+        if (! is_array($yaml)) {
+            throw new ParseException('The YAML value does not appear to be valid UTF-8.', -1, null, null);
+        }
+
+        return $yaml;
     }
 }

@@ -4,8 +4,9 @@ namespace Kurenai\Parser\TestCase;
 
 use Kurenai\Document;
 use Kurenai\Parser\CommonMark;
+use PHPUnit\Framework\TestCase;
 
-class CommonMarkTest extends \PHPUnit_Framework_TestCase
+class CommonMarkTest extends TestCase
 {
     public function testDocumentHtmlContentCanBeReturned()
     {

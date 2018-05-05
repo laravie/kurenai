@@ -2,10 +2,7 @@
 
 namespace Kurenai;
 
-use Kurenai\Contracts\MarkdownParser;
-use Kurenai\Contracts\Document as DocumentContract;
-
-class Document implements DocumentContract
+class Document implements Contracts\Document
 {
     /**
      * The document body in Markdown format.
@@ -33,7 +30,7 @@ class Document implements DocumentContract
      *
      * @param  \Kurenai\Contracts\MarkdownParser  $markdownParser
      */
-    public function __construct(MarkdownParser $markdownParser)
+    public function __construct(Contracts\MarkdownParser $markdownParser)
     {
         $this->markdownParser = $markdownParser;
     }
@@ -45,7 +42,7 @@ class Document implements DocumentContract
      *
      * @return $this
      */
-    public function setContent($content)
+    public function setContent(string $content)
     {
         $this->content = $content;
 
@@ -57,7 +54,7 @@ class Document implements DocumentContract
      *
      * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
@@ -67,7 +64,7 @@ class Document implements DocumentContract
      *
      * @return string
      */
-    public function getHtmlContent()
+    public function getHtmlContent(): string
     {
         return $this->markdownParser->render($this->content);
     }
@@ -94,7 +91,7 @@ class Document implements DocumentContract
      *
      * @return $this
      */
-    public function add($key, $value)
+    public function add(string $key, $value)
     {
         $this->metadata[$key] = $value;
 
@@ -104,18 +101,18 @@ class Document implements DocumentContract
     /**
      * Get metadata from the document.
      *
-     * @param  string  $key
+     * @param  string|null  $key
      *
      * @return mixed
      */
-    public function get($key = null)
+    public function get(?string $key = null)
     {
         if (is_null($key)) {
             return $this->metadata;
         }
 
         if (! array_key_exists($key, $this->metadata)) {
-            return;
+            return null;
         }
 
         return $this->metadata[$key];

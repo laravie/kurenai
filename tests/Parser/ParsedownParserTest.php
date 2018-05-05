@@ -4,9 +4,10 @@ namespace Kurenai\Parser\TestCase;
 
 use Kurenai\Document;
 use Kurenai\Parser\Parsedown;
+use PHPUnit\Framework\TestCase;
 use Kurenai\Parser\ParsedownExtra;
 
-class ParsedownParserTest extends \PHPUnit_Framework_TestCase
+class ParsedownParserTest extends TestCase
 {
     public function testDocumentHtmlContentCanBeReturned()
     {

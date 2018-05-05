@@ -4,11 +4,12 @@ namespace Kurenai\TestCase;
 
 use Mockery as m;
 use Kurenai\Document;
+use PHPUnit\Framework\TestCase;
 use Kurenai\Contracts\MarkdownParser;
 
-class DocumentTest extends \PHPUnit_Framework_TestCase
+class DocumentTest extends TestCase
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }
@@ -61,7 +62,7 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
  */
 class MarkdownParserStub implements MarkdownParser
 {
-    public function render($content)
+    public function render(?string $content): string
     {
         return 'Rendered content.';
     }

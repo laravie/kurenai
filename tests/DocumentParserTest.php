@@ -5,8 +5,9 @@ namespace Kurenai\TestCase;
 use Kurenai\Document;
 use Kurenai\DocumentParser;
 use Kurenai\Parser\Parsedown;
+use PHPUnit\Framework\TestCase;
 
-class DocumentParserTest extends \PHPUnit_Framework_TestCase
+class DocumentParserTest extends TestCase
 {
     public function testParseSectionCanParseOffset()
     {
@@ -32,17 +33,22 @@ class DocumentParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("--\n\n\nsecond", $d->parseSection($f, 1));
     }
 
+    /**
+     * @expectedException \Kurenai\Exceptions\TooFewSectionsException
+     */
     public function testParseSectionBreaksWithoutNewLines()
     {
-        $this->setExpectedException('Kurenai\Exceptions\TooFewSectionsException');
         $d = new DocumentParser(new Document(new Parsedown()));
         $f = "first-----second";
         $d->parseSection($f, 0);
     }
 
+    /**
+     * @expectedException \Kurenai\Exceptions\TooFewSectionsException
+     * @return [type] [description]
+     */
     public function testParseSectionBreaksWhenSeparatorHasLessThanThreeDashes()
     {
-        $this->setExpectedException('Kurenai\Exceptions\TooFewSectionsException');
         $d = new DocumentParser(new Document(new Parsedown()));
         $f = "first\n--\nsecond";
         $d->parseSection($f, 0);

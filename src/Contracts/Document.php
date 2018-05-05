@@ -7,51 +7,51 @@ interface Document
     /**
      * Set the document content in Markdown format.
      *
-     * @param  string $content
+     * @param  string  $content
      *
-     * @return \Kurenai\Document
+     * @return $this
      */
-    public function setContent($content);
+    public function setContent(string $content);
 
     /**
      * Get the document content in Markdown format.
      *
      * @return string
      */
-    public function getContent();
+    public function getContent(): string;
 
     /**
      * Get the document content in HTML format.
      *
      * @return string
      */
-    public function getHtmlContent();
+    public function getHtmlContent(): string;
 
     /**
      * Set the document metadata using an array.
      *
-     * @param  array $metadata
+     * @param  array  $metadata
      *
-     * @return \Kurenai\Document
+     * @return $this
      */
     public function set(array $metadata);
 
     /**
      * Add a piece of metadata to the document.
      *
-     * @param  string $key
-     * @param  mixed $value
+     * @param  string  $key
+     * @param  mixed  $value
      *
-     * @return \Kurenai\Document
+     * @return $this
      */
-    public function add($key, $value);
+    public function add(string $key, $value);
 
     /**
      * Get metadata from the document.
      *
-     * @param  string $key
+     * @param  string|null  $key
      *
      * @return mixed
      */
-    public function get($key = null);
+    public function get(?string $key = null);
 }
