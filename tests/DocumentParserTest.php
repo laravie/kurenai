@@ -39,12 +39,13 @@ class DocumentParserTest extends TestCase
     public function testParseSectionBreaksWithoutNewLines()
     {
         $d = new DocumentParser(new Document(new Parsedown()));
-        $f = "first-----second";
+        $f = 'first-----second';
         $d->parseSection($f, 0);
     }
 
     /**
      * @expectedException \Kurenai\Exceptions\TooFewSectionsException
+     *
      * @return [type] [description]
      */
     public function testParseSectionBreaksWhenSeparatorHasLessThanThreeDashes()
@@ -85,7 +86,7 @@ class DocumentParserTest extends TestCase
         $f = file_get_contents(__DIR__.'/fixtures/document_02.md');
         $s = $d->parseMetadata($f);
         $this->assertCount(2, $s);
-        $this->assertEquals(array('Foo' => 'Bar', 'Baz' => 'Boo'), $s);
+        $this->assertEquals(['Foo' => 'Bar', 'Baz' => 'Boo'], $s);
     }
 
     /**
@@ -105,14 +106,14 @@ class DocumentParserTest extends TestCase
         $document = $d->parse($file);
         $meta = $document->get();
         $this->assertCount(2, $meta);
-        $this->assertSame(array('foo' => 'bar', 'baz' => 'boo'), $meta);
+        $this->assertSame(['foo' => 'bar', 'baz' => 'boo'], $meta);
     }
 
     public function testBuildDocumentCreatesDocumentCorrectly()
     {
         $d = new DocumentParser(new Document(new Parsedown()));
         $c = 'foo bar';
-        $m = array('foo' => 'bar');
+        $m = ['foo' => 'bar'];
         $a = $d->buildDocument($c, $m);
         $this->assertTrue($a instanceof Document);
         $this->assertEquals('foo bar', $a->getContent());
@@ -141,7 +142,7 @@ class DocumentParserTest extends TestCase
         $f = file_get_contents(__DIR__.'/fixtures/document_03.md');
         $a = $d->parse($f);
         $this->assertCount(2, $a->get());
-        $this->assertEquals(array('foo' => 'bar', 'baz' => 'boo'), $a->get());
+        $this->assertEquals(['foo' => 'bar', 'baz' => 'boo'], $a->get());
         $this->assertEquals('bar', $a->get('foo'));
         $this->assertEquals('boo', $a->get('baz'));
     }

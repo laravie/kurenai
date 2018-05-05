@@ -10,7 +10,7 @@ class CommonMarkTest extends TestCase
 {
     public function testDocumentHtmlContentCanBeReturned()
     {
-        $d = new Document(new CommonMark);
+        $d = new Document(new CommonMark());
         $d->setContent('Foo **Bar** Baz');
         $e = "<p>Foo <strong>Bar</strong> Baz</p>\n";
         $this->assertEquals($e, $d->getHtmlContent());

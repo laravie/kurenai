@@ -30,10 +30,10 @@ class DocumentTest extends TestCase
     public function testDocumentMetadataCanBeSet()
     {
         $d = new Document(m::mock('\Kurenai\Contracts\MarkdownParser'));
-        $d->set(array('Foo' => 'Bar'));
+        $d->set(['Foo' => 'Bar']);
         $this->assertCount(1, $d->get());
         $this->assertEquals('Bar', $d->get('Foo'));
-        $this->assertEquals(array('Foo' => 'Bar'), $d->get());
+        $this->assertEquals(['Foo' => 'Bar'], $d->get());
     }
 
     public function testDocumentMetadataCanBeAdded()
@@ -42,12 +42,12 @@ class DocumentTest extends TestCase
         $d->add('Foo', 'Bar');
         $this->assertCount(1, $d->get());
         $this->assertEquals('Bar', $d->get('Foo'));
-        $this->assertEquals(array('Foo' => 'Bar'), $d->get());
+        $this->assertEquals(['Foo' => 'Bar'], $d->get());
         $d->add('Baz', 'Boo');
         $this->assertCount(2, $d->get());
         $this->assertEquals('Bar', $d->get('Foo'));
         $this->assertEquals('Boo', $d->get('Baz'));
-        $this->assertEquals(array('Foo' => 'Bar', 'Baz' => 'Boo'), $d->get());
+        $this->assertEquals(['Foo' => 'Bar', 'Baz' => 'Boo'], $d->get());
     }
 
     public function testDocumentCanUseCustomParser()
