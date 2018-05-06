@@ -45,8 +45,6 @@ class DocumentParserTest extends TestCase
 
     /**
      * @expectedException \Kurenai\Exceptions\TooFewSectionsException
-     *
-     * @return [type] [description]
      */
     public function testParseSectionBreaksWhenSeparatorHasLessThanThreeDashes()
     {
