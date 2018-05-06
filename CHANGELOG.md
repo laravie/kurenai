@@ -10,7 +10,6 @@ Released: 2018-05-06
 
 * Bump minimum PHP to 7.1+.
 * Add support for Symfony YAML 4+.
-* 
 
 ## 1.0.0
 
