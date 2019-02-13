@@ -33,21 +33,19 @@ class DocumentParserTest extends TestCase
         $this->assertEquals("--\n\n\nsecond", $d->parseSection($f, 1));
     }
 
-    /**
-     * @expectedException \Kurenai\Exceptions\TooFewSectionsException
-     */
     public function testParseSectionBreaksWithoutNewLines()
     {
+        $this->expectException('Kurenai\Exceptions\TooFewSectionsException');
+
         $d = new DocumentParser(new Document(new Parsedown()));
         $f = 'first-----second';
         $d->parseSection($f, 0);
     }
 
-    /**
-     * @expectedException \Kurenai\Exceptions\TooFewSectionsException
-     */
     public function testParseSectionBreaksWhenSeparatorHasLessThanThreeDashes()
     {
+        $this->expectException('Kurenai\Exceptions\TooFewSectionsException');
+
         $d = new DocumentParser(new Document(new Parsedown()));
         $f = "first\n--\nsecond";
         $d->parseSection($f, 0);
@@ -87,11 +85,10 @@ class DocumentParserTest extends TestCase
         $this->assertEquals(['Foo' => 'Bar', 'Baz' => 'Boo'], $s);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Yaml\Exception\ParseException
-     */
     public function testMetadataCanBeParsedWithExtraColons()
     {
+        $this->expectException('Symfony\Component\Yaml\Exception\ParseException');
+
         $d = new DocumentParser(new Document(new Parsedown()));
         $f = "foo:bar\nbaz:bar:bar";
         $s = $d->parseMetadata($f);
