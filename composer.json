@@ -22,7 +22,7 @@
     },
     "require": {
         "php": ">=7.1",
-        "symfony/yaml": "^3.0 || ^4.0"
+        "symfony/yaml": "^4.0"
     },
     "require-dev": {
         "erusev/parsedown": "^1.7.1",
@@ -41,7 +41,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0-dev"
+            "dev-master": "2.1-dev"
         }
     },
     "minimum-stability" : "dev"
