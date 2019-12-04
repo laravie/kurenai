@@ -27,7 +27,7 @@
     "require-dev": {
         "erusev/parsedown": "^1.7.1",
         "erusev/parsedown-extra": "~0.7",
-        "league/commonmark": "~0.17",
+        "league/commonmark": "~0.18.3",
         "mockery/mockery": "^1.2",
         "phpunit/phpunit": "^7.5 || ^8.0"
     },
